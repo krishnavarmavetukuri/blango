@@ -20,7 +20,13 @@ import dj_database_url
 
 class Dev(Configuration):
   AUTH_USER_MODEL = "blango_auth.User"
-  
+  REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        ]
+    }
   LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -101,6 +107,7 @@ class Dev(Configuration):
       "allauth.account",
       "allauth.socialaccount",
       "allauth.socialaccount.providers.google",
+      "rest_framework.authtoken",
   ]
 
   MIDDLEWARE = [
