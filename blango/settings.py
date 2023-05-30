@@ -20,6 +20,12 @@ import dj_database_url
 
 class Dev(Configuration):
   AUTH_USER_MODEL = "blango_auth.User"
+  SWAGGER_SETTINGS = {
+            "SECURITY_DEFINITIONS": {
+                  "Token": {"type": "apiKey", "name": "Authorization", "in": "header"},
+                  "Basic": {"type": "basic"},
+            }
+    }
   REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
@@ -111,6 +117,7 @@ class Dev(Configuration):
       "allauth.socialaccount",
       "allauth.socialaccount.providers.google",
       "rest_framework.authtoken",
+      "drf_yasg",
   ]
 
   MIDDLEWARE = [
